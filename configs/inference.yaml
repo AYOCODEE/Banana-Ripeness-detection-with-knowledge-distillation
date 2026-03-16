@@ -1,0 +1,20 @@
+# Inference configuration
+inference:
+  model_path: models/resnet10_distilled_student_model
+  img_size: [224, 224]
+  class_names:
+    - Overripe
+    - Ripe
+    - Unripe
+    - Rotten
+
+# API settings
+api:
+  host: 0.0.0.0
+  port: 8000
+  workers: 1
+
+# Batch processing
+batch:
+  batch_size: 32
+  output_dir: results/predictions

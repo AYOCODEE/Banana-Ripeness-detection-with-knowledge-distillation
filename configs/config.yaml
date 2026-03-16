@@ -1,0 +1,54 @@
+# Model hyperparameters and training configuration
+model:
+  # Teacher model (ResNet50 pretrained on ImageNet)
+  teacher:
+    input_shape: [224, 224, 3]
+    num_classes: 4
+    dense_units: [512, 256]
+    dropout_rate: 0.4
+    learning_rate: 0.001
+
+  # Student model (custom ResNet10)
+  student:
+    input_shape: [224, 224, 3]
+    num_classes: 4
+    learning_rate: 0.001
+
+# Knowledge distillation settings
+distillation:
+  alpha: 0.1        # Weight for student task loss (1-alpha for distillation)
+  temperature: 40   # Softening temperature for logits
+
+# Training settings
+training:
+  batch_size: 32
+  epochs_teacher: 20
+  epochs_distillation: 10
+  validation_split: 0.3
+  seed: 42
+  early_stopping:
+    monitor: val_loss
+    patience: 5
+    restore_best_weights: true
+
+# Data augmentation
+augmentation:
+  rotation_range: 30
+  zoom_range: 0.1
+  horizontal_flip: true
+  fill_mode: nearest
+
+# Class labels (index -> name)
+classes:
+  0: Overripe
+  1: Ripe
+  2: Unripe
+  3: Rotten
+
+# Paths
+paths:
+  data_dir: data/raw
+  model_save_dir: models
+  results_dir: results
+  teacher_model: models/resnet50_teacher_model
+  student_model: models/resnet10_distilled_student_model

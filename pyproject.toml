@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "banana-ripeness-detection"
+version = "1.0.0"
+description = "Banana ripeness detection using knowledge distillation (ResNet50 → ResNet10)"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "AYOCODEE" }]
+requires-python = ">=3.10"
+keywords = [
+    "machine-learning",
+    "computer-vision",
+    "knowledge-distillation",
+    "deep-learning",
+    "tensorflow",
+    "banana",
+    "ripeness-detection",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "tensorflow>=2.12.0,<3.0.0",
+    "numpy>=1.23.0",
+    "Pillow>=9.0.0",
+    "matplotlib>=3.6.0",
+    "PyYAML>=6.0",
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.22.0",
+    "python-multipart>=0.0.6",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "pre-commit>=3.0.0",
+    "httpx>=0.24.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "requires_tf: marks tests that require TensorFlow (deselect with '-m not requires_tf')",
+]
+
+[tool.flake8]
+max-line-length = 100
+extend-ignore = ["E203", "W503"]
