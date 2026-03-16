@@ -19,9 +19,9 @@ env/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Dataset & models (large binary files)
-data/
-models/
+# Dataset & models (large binary files - root level only)
+/data/
+/models/
 *.h5
 *.keras
 *.pb
